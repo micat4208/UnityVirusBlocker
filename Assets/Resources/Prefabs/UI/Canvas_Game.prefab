@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 7861623609346305165}
   - component: {fileID: 7646194955591828768}
   - component: {fileID: 4503782667457947744}
-  - component: {fileID: 6384210449296412130}
+  - component: {fileID: -4833665856932133253}
   m_Layer: 5
   m_Name: Canvas_Game
   m_TagString: Untagged
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6384210449296412130
+--- !u!114 &-4833665856932133253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -400,9 +400,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8271488514035547709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 256167512, guid: 223f62dcc29c7c248ba192f7121af7b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ae94414113807543a2e6fec3d4e26a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerControllerPrefab: {fileID: 8904262293025577587, guid: 15a8685acca89274ab94eda851d01193,
+    type: 3}
+  m_PlayerableCharacterPrefab: {fileID: 5148582361689579082, guid: 9a9cb12179a92ea46871c7d9a53e3864,
+    type: 3}
+  _MovementJoystick: {fileID: 7695868661564247809}
+  _AttackJoystick: {fileID: 6666255980769387433}
 --- !u!1 &8811259527295105139
 GameObject:
   m_ObjectHideFlags: 0
