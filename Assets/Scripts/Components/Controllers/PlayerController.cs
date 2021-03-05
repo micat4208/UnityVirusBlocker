@@ -26,6 +26,9 @@ public sealed class PlayerController : PlayerControllerBase
 	{
         // 입력 축 값 갱신
         UpdateInputAxisValue();
+
+        // 컨트롤러 회전
+        RotateController();
     }
 
     // 입력 축 값을 갱신합니다.
@@ -36,10 +39,22 @@ public sealed class PlayerController : PlayerControllerBase
 
         inputAttackAxis = new Vector3(
             attackJoystick.inputAxis.x, 0.0f, attackJoystick.inputAxis.y);
-
     }
 
+    // 컨트롤러를 회전시킵니다.
+    private void RotateController()
+	{
+        // 조이스틱 입력이 없다면 실행 X
+        if (!attackJoystick.isInput) return;
 
+        // 입력 방향을 Y 축 기준 회전값으로 변경합니다.
+        float yawAngle = inputAttackAxis.ToAngle();
 
+        Vector3 eulerAngle = new Vector3(0.0f, yawAngle, 0.0f);
 
+        // 컨트롤러를 회전시킵니다.
+        SetControlRotation(eulerAngle);
+
+        Debug.Log(eulerAngle);
+	}
 }
