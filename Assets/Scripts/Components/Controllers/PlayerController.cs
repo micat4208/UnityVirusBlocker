@@ -54,7 +54,5 @@ public sealed class PlayerController : PlayerControllerBase
 
         // 컨트롤러를 회전시킵니다.
         SetControlRotation(eulerAngle);
-
-        Debug.Log(eulerAngle);
 	}
 }
