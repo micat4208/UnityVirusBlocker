@@ -4856,6 +4856,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MissileFireLeftPos: {fileID: 2041025170972176042}
   _MissileFireRightPos: {fileID: 1957020621924702840}
+  _MissileCount: 10
+  _MissileDelay: 0.3
 --- !u!1 &6126011725347327867
 GameObject:
   m_ObjectHideFlags: 0
