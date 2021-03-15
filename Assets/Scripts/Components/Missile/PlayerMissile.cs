@@ -23,6 +23,18 @@ public sealed class PlayerMissile : MonoBehaviour,
 	private void Awake()
 	{
 		projectileMovement = GetComponent<ProjectileMovement>();
+
+		// 투사체가 갑지할 오브젝트 레이어를 지정합니다.
+		projectileMovement.detectableLayer = (1 << LayerMask.NameToLayer("Enemy"));
+
+		// 투사체 반지름 설정
+		projectileMovement.projectileRadius = 0.1f;
+
+		// 투사체 겹침시 실행할 내용을 정의합니다.
+		projectileMovement.onProjectileOverlapped += (Collider collider) =>
+		{
+			Debug.Log(collider.gameObject.name);
+		};
 	}
 
 	private void Update()

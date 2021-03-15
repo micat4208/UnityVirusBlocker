@@ -17,14 +17,16 @@ public sealed class PlayerableCharacter : PlayerableCharacterBase,
 	private void Awake()
 	{
 		idCollider = GetComponent<CharacterController>();
+		tag = "Player";
+
+		// 플레이어블 캐릭터가 피해를 입었을 경우 실행할 내용 정의
+		OnTakeAnyDamage += (damageCauser, componentCauser, damage) =>
+			Debug.Log("damage = " + damage);
 	}
 
 	protected override void Update()
 	{
 		base.Update();
-
-		Debug.Log("allocated Character Count = " +
-			SceneManager.Instance.sceneInstance.allocatedCharacters.Count);
 	}
 
 	public override void OnControllerConnected(PlayerControllerBase connectedController)
