@@ -11,7 +11,7 @@ public abstract class AIBehaviorBase:
 	[SerializeField] private float m_BehaivorFinalDelay = 0.0f;
 
 	// 행동 시작을 제어하기 위한 프로퍼티
-	public bool allowBehaviorStared { get; set; }
+	public bool allowStartBehavior { get; set; }
 	/// - 이 값이 true 일 경우 행동이 시작됩니다.
 
 	// 행동이 끝났음을 나타내는 프로퍼티
@@ -34,13 +34,14 @@ public abstract class AIBehaviorBase:
 	{
 		behaviorController = GetComponent<BehaviorController>();
 
+
 		// 기본적으로 행동 시작을 허용하도록 합니다.
-		onBehaviorStarted = () => behaviorFinished = true;
+		onBehaviorStarted = () => allowStartBehavior = true;
 	}
 
 	public virtual void InitializeBehavior()
 	{
-		allowBehaviorStared = behaviorFinished = false;
+		allowStartBehavior = behaviorFinished = false;
 	}
 
 	// 행동

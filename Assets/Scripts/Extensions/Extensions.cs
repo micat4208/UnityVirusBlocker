@@ -10,4 +10,8 @@ public static class Extensions
 		if (castDirVector) dirVector.Normalize();
 		return Mathf.Atan2(dirVector.x, dirVector.z) * Mathf.Rad2Deg;
 	}
+
+	// from 에서 to 로의 방향을 반환합니다.
+	public static Vector3 To(this Vector3 from, Vector3 to) =>
+		(to - from).normalized;
 }

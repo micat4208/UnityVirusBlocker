@@ -40,7 +40,7 @@ public sealed class BehaviorController :
 
 		// 행동 시작을 허용할 때까지 대기합니다.
 		WaitUntil waitAllowBehaviorStarted = new WaitUntil(
-			() => _NextBehavior.allowBehaviorStared);
+			() => _NextBehavior.allowStartBehavior);
 
 		// 행동이 끝날 때까지 대기합니다.
 		WaitUntil waitBehaviorFinished = new WaitUntil(
@@ -64,7 +64,7 @@ public sealed class BehaviorController :
 
 			// 행동 시작 이벤트 실행
 			_NextBehavior.onBehaviorStarted?.Invoke();
-
+			
 			// 행동 시작을 대기
 			yield return waitAllowBehaviorStarted;
 
