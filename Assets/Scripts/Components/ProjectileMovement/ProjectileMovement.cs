@@ -19,7 +19,7 @@ public sealed class ProjectileMovement:
 	public int detectableLayer { get; set; } = 1;
 
 	// 투사체와 다른 오브젝트간의 겹침이 발생했을 경우 호출되는 대리자
-	public System.Action<Collider> onProjectileOverlapped { get; set; }
+	public System.Action<Collider, Vector3> onProjectileOverlapped { get; set; }
 
 	private void Update()
 	{
@@ -79,7 +79,7 @@ public sealed class ProjectileMovement:
 		if (colliders.Length > 0)
 		{
 			// 감지한 첫 번째 객체를 전달합니다.
-			onProjectileOverlapped?.Invoke(colliders[0]);
+			onProjectileOverlapped?.Invoke(colliders[0], transform.position);
 			return;
 		}
 
@@ -92,7 +92,7 @@ public sealed class ProjectileMovement:
 			ray.direction, out hit, projectileSpeed * Time.deltaTime, detectableLayer))
 		{
 			// 감지한 객체를 전달합니다.
-			onProjectileOverlapped?.Invoke(hit.collider);
+			onProjectileOverlapped?.Invoke(hit.collider, transform.position);
 		}
 	}
 }

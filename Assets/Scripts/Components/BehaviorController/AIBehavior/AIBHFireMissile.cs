@@ -15,11 +15,15 @@ public sealed class AIBHFireMissile:
 
 	private EnemyMissile _EnemyMissilePrefab;
 
+	private EnemyCharacter _EnemyCharacter;
+
 	private ObjectPool<EnemyMissile> _MissilePool = new ObjectPool<EnemyMissile>();
 
 	protected override void Awake()
 	{
 		base.Awake();
+
+		_EnemyCharacter = GetComponent<EnemyCharacter>();
 
 		_EnemyMissilePrefab = ResourceManager.Instance.LoadResource<GameObject>(
 			"EnemyMissile",
@@ -42,15 +46,22 @@ public sealed class AIBHFireMissile:
 					_MissilePool.RegisterRecyclableObject(Instantiate(_EnemyMissilePrefab));
 
 				_MissileFirePosition.localEulerAngles = Vector3.up * (addYawAngle * i);
-				Debug.Log(_MissileFirePosition.localEulerAngles.y);
 
 				// 미사일 발사
-				enemyMissile.Fire(_MissileFirePosition.position, _MissileFirePosition.forward);
+				enemyMissile.Fire(_EnemyCharacter, _MissileFirePosition.position, _MissileFirePosition.forward);
 			}
 		}
 
 		FireMissile();
 
 		behaviorFinished = true;
+	}
+
+	private void OnDestroy()
+	{
+		foreach(var missile in _MissilePool.poolObjects)
+			Destroy(missile);
+
+		_MissilePool.poolObjects.Clear();
 	}
 }

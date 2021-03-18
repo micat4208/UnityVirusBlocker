@@ -16,7 +16,9 @@ public sealed class GameSceneInstance :
 	{
 		// 매개 변수 particleInstType 에 전달된 타입과 같은 타입의 ParticleInstance 를 찾아 반환합니다.
 		return particlePool.GetRecycleObject(
-			(obj) => obj.particleInstanceType == particleInstType);
+			(obj) => 
+			obj.particleInstanceType == particleInstType && 
+			obj.canRecyclable);
 	}
 
 

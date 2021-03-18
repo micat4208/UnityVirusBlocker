@@ -1097,7 +1097,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 1.96
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -1129,8 +1129,8 @@ MonoBehaviour:
   m_BehaivorFinalDelay: 0
   _MoveSpeed: 5
   _UseYawRotation: 0
-  _DirectionUpdateDelay: 0.1
-  _MaxTrackingTime: 0.1
+  _DirectionUpdateDelay: 1
+  _MaxTrackingTime: 1
 --- !u!114 &1632340283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,9 +1143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1bbdfb25bf8464f9ecc2cafe8c1761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BehaivorBeginDelay: 0
-  m_BehaivorFinalDelay: 0
-  _MissileCount: 4
+  m_BehaivorBeginDelay: 0.5
+  m_BehaivorFinalDelay: 0.5
+  _MissileCount: 20
   _MissileFirePosition: {fileID: 139521799}
 --- !u!1 &1756769004
 GameObject:
@@ -1497,7 +1497,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 1.85
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}

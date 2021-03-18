@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStartupFramework;
 using UnityStartUpFramework;
 
 // 플레이어 캐릭터가 발사하는 미사일을 나타내기 위한 컴포넌트
@@ -13,6 +14,8 @@ public sealed class PlayerMissile : MonoBehaviour,
 	// 미사일 발사 위치
 	private Vector3 _InitialPosition;
 
+	private ParticleInstance _PlayerMissileHitPrefab;
+
 	// 함께 사용되는 ProjectileMovement Component 를 나타냅니다.
 	public ProjectileMovement projectileMovement { get; private set; }
 
@@ -22,6 +25,10 @@ public sealed class PlayerMissile : MonoBehaviour,
 
 	private void Awake()
 	{
+		_PlayerMissileHitPrefab = ResourceManager.Instance.LoadResource<GameObject>(
+			"PlayerMissileHit",
+			"Prefabs/ParticleInstances/PlayerMissileHit").GetComponent<ParticleInstance>();
+
 		projectileMovement = GetComponent<ProjectileMovement>();
 
 		// 투사체가 갑지할 오브젝트 레이어를 지정합니다.
@@ -31,9 +38,17 @@ public sealed class PlayerMissile : MonoBehaviour,
 		projectileMovement.projectileRadius = 0.1f;
 
 		// 투사체 겹침시 실행할 내용을 정의합니다.
-		projectileMovement.onProjectileOverlapped += (Collider collider) =>
+		projectileMovement.onProjectileOverlapped += (collider, position) =>
 		{
-			Debug.Log(collider.gameObject.name);
+			var sceneInstance = (SceneManager.Instance.sceneInstance as GameSceneInstance);
+
+			var particleInstance = sceneInstance.GetParticleInstance(ParticleInstanceType.PlayerMissileHit) ??
+				sceneInstance.particlePool.RegisterRecyclableObject(Instantiate(_PlayerMissileHitPrefab));
+
+			particleInstance.transform.position = position;
+			particleInstance.PlayParticle();
+
+			DisableMissile();
 		};
 	}
 

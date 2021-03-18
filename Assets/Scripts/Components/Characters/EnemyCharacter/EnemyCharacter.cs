@@ -14,7 +14,6 @@ public sealed class EnemyCharacter : CharacterBase, HealthPointable
 
 	public new Collider collider { get; private set; }
 	public BehaviorController behaviorController { get; private set; }
-
 	public float maxHp => _MaxHp;
 	public float hp => _Hp;
 

@@ -8,7 +8,10 @@ using UnityStartUpFramework;
 public sealed class ParticleInstance:
 	MonoBehaviour, IObjectPoolable
 {
-	public ParticleInstanceType particleInstanceType { get; set; }
+	[SerializeField] private ParticleInstanceType _ParticleInstanceType;
+
+	public ParticleInstanceType particleInstanceType 
+	{ get => _ParticleInstanceType; set => _ParticleInstanceType = value; }
 
 	public bool canRecyclable { get; set; }
 	public Action onRecycleStartEvent { get; set; }
@@ -20,7 +23,7 @@ public sealed class ParticleInstance:
 	private void Awake()
 	{
 		particleSystem = GetComponent<ParticleSystem>();
-		_WaitParticlePlayFin = new WaitUntil(() => particleSystem.isPlaying);
+		_WaitParticlePlayFin = new WaitUntil(() => !particleSystem.isPlaying);
 	}
 
 	// 파티클을 재생 시킵니다.
