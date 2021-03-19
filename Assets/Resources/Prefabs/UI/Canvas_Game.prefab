@@ -564,6 +564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3864384510923759209}
+  - component: {fileID: 6956076614957853117}
   m_Layer: 5
   m_Name: Panel_Status
   m_TagString: Untagged
@@ -592,6 +593,20 @@ RectTransform:
   m_AnchoredPosition: {x: 800, y: 450}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6956076614957853117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165529703687315231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2b43c22c7304d4ea9daa8d37661b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _HpBarImage: {fileID: 9135826658533001839}
+  _AttackBarImage: {fileID: 804059142817328927}
 --- !u!1 &7781802516809605224
 GameObject:
   m_ObjectHideFlags: 0

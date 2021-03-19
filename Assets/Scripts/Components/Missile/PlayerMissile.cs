@@ -48,6 +48,10 @@ public sealed class PlayerMissile : MonoBehaviour,
 			particleInstance.transform.position = position;
 			particleInstance.PlayParticle();
 
+			SceneManager.Instance.sceneInstance.allocatedCharacters[collider].ApplyDamage(
+				PlayerManager.Instance.playerController.playerableCharacter,
+				this, 5.0f);
+
 			DisableMissile();
 		};
 	}

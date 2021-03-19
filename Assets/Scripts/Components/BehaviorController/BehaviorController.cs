@@ -32,6 +32,14 @@ public sealed class BehaviorController :
 		StartCoroutine(_Behavior = BehaviorControl());
 	}
 
+	// 행동을 중단합니다.
+	public void StopBehaivor()
+	{
+		StopCoroutine(_Behavior);
+
+		_NextBehavior.StopBehaivor();
+	}
+
 	// 행동을 제어합니다.
 	private IEnumerator BehaviorControl()
 	{

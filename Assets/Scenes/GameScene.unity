@@ -997,6 +997,16 @@ MonoBehaviour:
   m_PlayerableCharacterPrefab: {fileID: 5148582361689579082, guid: 9a9cb12179a92ea46871c7d9a53e3864,
     type: 3}
   _TrackingCamera: {fileID: 1317119321}
+  _WaveInfos:
+  - enemyType1: 20
+    enemyType2: 1
+    enemyType3: 0
+  - enemyType1: 25
+    enemyType2: 3
+    enemyType3: 1
+  - enemyType1: 30
+    enemyType2: 7
+    enemyType3: 5
 --- !u!4 &1526589095
 Transform:
   m_ObjectHideFlags: 0

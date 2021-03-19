@@ -14474,8 +14474,9 @@ GameObject:
   - component: {fileID: 3273936529808773872}
   - component: {fileID: 3440392458876687298}
   - component: {fileID: 3439408808128879352}
+  - component: {fileID: 1917388872}
   m_Layer: 0
-  m_Name: EnemyDie
+  m_Name: Die
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19288,6 +19289,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1917388872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277525180647340090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d10f86d4d6634c409fad8dd9b75bc1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ParticleInstanceType: 2
 --- !u!1 &5543219969514012073
 GameObject:
   m_ObjectHideFlags: 0

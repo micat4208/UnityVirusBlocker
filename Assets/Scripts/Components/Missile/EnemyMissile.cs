@@ -61,7 +61,7 @@ public class EnemyMissile : MonoBehaviour,
 		};
 	}
 
-	private void DisableMissile()
+	public void DisableMissile()
 	{
 		canRecyclable = true;
 		gameObject.SetActive(false);

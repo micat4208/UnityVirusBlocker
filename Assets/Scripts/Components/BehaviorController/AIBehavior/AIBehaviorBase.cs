@@ -46,4 +46,7 @@ public abstract class AIBehaviorBase:
 
 	// 행동
 	public abstract void Run();
+
+	// 행동 중지
+	public virtual void StopBehaivor() { }
 }

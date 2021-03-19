@@ -8,9 +8,14 @@ public sealed class GameSceneInstance :
 {
 	[SerializeField] private TrackingMovement _TrackingCamera;
 
+	[Header("Wave Info")]
+	[SerializeField] private List<StageWaveInfo> _WaveInfos = new List<StageWaveInfo>();
+
 	public TrackingMovement trackingCamera => _TrackingCamera;
 
 	public ObjectPool<ParticleInstance> particlePool { get; private set; } = new ObjectPool<ParticleInstance>();
+
+
 
 	public ParticleInstance GetParticleInstance(ParticleInstanceType particleInstType)
 	{
