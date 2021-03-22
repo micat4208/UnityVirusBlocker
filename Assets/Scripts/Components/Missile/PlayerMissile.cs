@@ -16,11 +16,14 @@ public sealed class PlayerMissile : MonoBehaviour,
 
 	private ParticleInstance _PlayerMissileHitPrefab;
 
+	private float _MissileDamage;
+
 	// 함께 사용되는 ProjectileMovement Component 를 나타냅니다.
 	public ProjectileMovement projectileMovement { get; private set; }
 
 	public bool canRecyclable { get; set; }
 	public System.Action onRecycleStartEvent { get; set; }
+
 
 
 	private void Awake()
@@ -50,7 +53,7 @@ public sealed class PlayerMissile : MonoBehaviour,
 
 			SceneManager.Instance.sceneInstance.allocatedCharacters[collider].ApplyDamage(
 				PlayerManager.Instance.playerController.playerableCharacter,
-				this, 5.0f);
+				this, _MissileDamage);
 
 			DisableMissile();
 		};
@@ -83,8 +86,11 @@ public sealed class PlayerMissile : MonoBehaviour,
 	/// - initialPosition : 미사일 오브젝트의 초기 위치를 전달합니다.
 	/// - direction : 투사체 방향을 전달합니다.
 	/// - speed : 투사체 속력을 전달합니다.
-	public void Fire(Vector3 initialPosition, Vector3 direction, float speed)
+	public void Fire(Vector3 initialPosition, Vector3 direction, float speed, float missileDamage)
 	{
+		// 미사일 대미지 설정
+		_MissileDamage = missileDamage;
+
 		// 오브젝트 위치를 초기 위치로 설정합니다.
 		transform.position = _InitialPosition = initialPosition;
 

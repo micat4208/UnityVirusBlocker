@@ -19,6 +19,9 @@ public sealed class EnemyCharacter : CharacterBase, HealthPointable
 	public float maxHp => _MaxHp;
 	public float hp => _Hp;
 
+	// 적이 죽을 경우 호출되는 대리자
+	public System.Action onEnemyCharacterDie { get; set; }
+
 	private void Awake()
 	{
 		_CharacterDieParticlePrefab = ResourceManager.Instance.LoadResource<GameObject>(
@@ -48,6 +51,7 @@ public sealed class EnemyCharacter : CharacterBase, HealthPointable
 		GameSceneInstance gameSceneInstance = 
 			SceneManager.Instance.sceneInstance as GameSceneInstance;
 
+
 		var characterDieParticle = gameSceneInstance.GetParticleInstance(ParticleInstanceType.CharacterDie) ??
 			gameSceneInstance.particlePool.RegisterRecyclableObject(
 				Instantiate(_CharacterDieParticlePrefab));
@@ -56,6 +60,8 @@ public sealed class EnemyCharacter : CharacterBase, HealthPointable
 		characterDieParticle.PlayParticle();
 
 		behaviorController.StopBehaivor();
+
+		onEnemyCharacterDie?.Invoke();
 
 		Destroy(gameObject);
 	}

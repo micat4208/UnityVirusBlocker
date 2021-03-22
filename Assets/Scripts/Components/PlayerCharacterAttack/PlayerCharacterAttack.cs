@@ -16,6 +16,11 @@ public sealed class PlayerCharacterAttack : MonoBehaviour
 	[Header("미사일 발사 딜레이")]
 	[SerializeField] private float _MissileDelay = 0.3f;
 
+	[Header("공격력")]
+	[SerializeField] private float _Damage = 30.0f;
+
+
+
 	// 마지막 발사 시간을 나타냅니다.
 	private float _LastFiredTime;
 
@@ -27,6 +32,8 @@ public sealed class PlayerCharacterAttack : MonoBehaviour
 
 	// 미사일 오브젝트 풀
 	private ObjectPool<PlayerMissile> _PlayerMissilePool = new ObjectPool<PlayerMissile>();
+
+	public float damage => _Damage;
 
 	private void Awake()
 	{
@@ -41,6 +48,18 @@ public sealed class PlayerCharacterAttack : MonoBehaviour
 	private void Update()
 	{
 		FireMissile();
+		RechasrgeStamina();
+	}
+
+	private void RechasrgeStamina()
+	{
+		// 스테미너에 채워질 값
+		float chargeValue = _Damage * Time.deltaTime;
+
+		_PlayerableCharacter.attackStemina = Mathf.Clamp(
+			_PlayerableCharacter.attackStemina + chargeValue,
+			0.0f,
+			_PlayerableCharacter.maxAttackStemina);
 	}
 
 	// 미사일을 발사시킵니다.
@@ -71,11 +90,15 @@ public sealed class PlayerCharacterAttack : MonoBehaviour
 		// 공격 입력 확인
 		if (!attackJoystick.isInput) return;
 
+		// 스테미너 부족 시 발사 취소
+		if (_PlayerableCharacter.attackStemina < _Damage) return;
 
 		// 미사일 딜레이만큼 시간이 지나지 않았다면 발사 취소
 		if (Time.time - _LastFiredTime < _MissileDelay) return;
 		_LastFiredTime = Time.time;
 
+		// 스테미너 감소
+		_PlayerableCharacter.attackStemina -= _Damage;
 
 
 		// 미사일 개수만큼 발사시킵니다.
@@ -89,10 +112,10 @@ public sealed class PlayerCharacterAttack : MonoBehaviour
 			var newRightPlayerMissile = CreateMissileObject();
 
 			newLeftPlayerMissile.Fire(_MissileFireLeftPos.position,
-				_MissileFireLeftPos.forward, 10);
+				_MissileFireLeftPos.forward, 10, _Damage);
 
 			newRightPlayerMissile.Fire(_MissileFireRightPos.position,
-				_MissileFireRightPos.forward, 10);
+				_MissileFireRightPos.forward, 10, _Damage);
 		}
 	}
 

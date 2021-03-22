@@ -64,7 +64,10 @@ public class EnemyMissile : MonoBehaviour,
 	public void DisableMissile()
 	{
 		canRecyclable = true;
-		gameObject.SetActive(false);
+
+		if (_EnemyCharacter)
+			gameObject?.SetActive(false);
+		else Destroy(gameObject);
 	}
 
 	public void Fire(EnemyCharacter enemyCharacter, Vector3 initialPosition, Vector3 direction)

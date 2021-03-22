@@ -56,15 +56,4 @@ public sealed class AIBHFireMissile:
 
 		behaviorFinished = true;
 	}
-
-	private void OnDestroy()
-	{
-		foreach(var missile in _MissilePool.poolObjects)
-		{
-			missile.DisableMissile();
-			Destroy(missile);
-		}
-
-		_MissilePool.poolObjects.Clear();
-	}
 }
