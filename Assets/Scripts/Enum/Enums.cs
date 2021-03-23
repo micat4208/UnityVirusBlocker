@@ -13,3 +13,9 @@ public enum EnemyType
 	Enemy2,
 	Enemy3
 }
+
+public enum AudioType
+{
+	Bgm,
+	Effect
+}
