@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStartUpFramework.Util;
 
-public sealed class GameSceneInstance : 
-	SceneInstance
+public sealed class GameSceneInstance :
+	VBSceneInstance
 {
 	[Header("시작 전 딜레이")] [Range(0.0f, 10.0f)]
 	[SerializeField] private float _StageBeinDelay = 3.0f;

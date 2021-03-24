@@ -41,6 +41,9 @@ public sealed class AudioInstance:
 		// 재사용 불가능한 상태로 설정
 		canRecyclable = false;
 
+		// 소리 재생
+		audioSource.Play();
+
 		StartCoroutine(_WaitPlayFin = WaitPlayFin());
 
 		return this;
@@ -48,8 +51,11 @@ public sealed class AudioInstance:
 	
 	public void StopAudio()
 	{
-		StopCoroutine(_WaitPlayFin);
-		_WaitPlayFin = null;
+		if (_WaitPlayFin != null)
+		{
+			StopCoroutine(_WaitPlayFin);
+			_WaitPlayFin = null;
+		}
 
 		// 재사용 가능 상태로 설정
 		canRecyclable = true;

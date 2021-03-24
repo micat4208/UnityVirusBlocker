@@ -13,6 +13,7 @@ public sealed class EnemyCharacter : CharacterBase, HealthPointable
 	[SerializeField] private float _Hp = 100.0f;
 
 	private ParticleInstance _CharacterDieParticlePrefab;
+	private AudioClip _EnemyCharacterDieSound;
 
 	public new Collider collider { get; private set; }
 	public BehaviorController behaviorController { get; private set; }
@@ -28,6 +29,10 @@ public sealed class EnemyCharacter : CharacterBase, HealthPointable
 			"CharacterDie",
 			"Prefabs/ParticleInstances/CharacterDie").GetComponent<ParticleInstance>();
 
+		_EnemyCharacterDieSound = ResourceManager.Instance.LoadResource<AudioClip>(
+			"Player_Missile_Hit",
+			"Sound/Player_Missile_Hit");
+
 		idCollider = collider = GetComponent<Collider>();
 		behaviorController = GetComponent<BehaviorController>();
 		gameObject.layer = (LayerMask.NameToLayer("Enemy"));
@@ -36,7 +41,9 @@ public sealed class EnemyCharacter : CharacterBase, HealthPointable
 		{
 			_Hp -= damage;
 
+
 			if (_Hp <= 0.0f) OnCharacterDie();
+			else AudioManager.Instance.PlayAudio(_EnemyCharacterDieSound, false, 0.3f);
 		};
 	}
 
@@ -60,6 +67,8 @@ public sealed class EnemyCharacter : CharacterBase, HealthPointable
 		characterDieParticle.PlayParticle();
 
 		behaviorController.StopBehaivor();
+
+		AudioManager.Instance.PlayAudio(_EnemyCharacterDieSound, false, 0.7f);
 
 		onEnemyCharacterDie?.Invoke();
 

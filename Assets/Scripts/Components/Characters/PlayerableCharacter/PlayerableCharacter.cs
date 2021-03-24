@@ -20,6 +20,9 @@ public sealed class PlayerableCharacter : PlayerableCharacterBase,
 	private ParticleInstance _DieParticlePrefab;
 	private ParticleInstance _EnemyMissileHitPrefab;
 
+	private AudioClip _PlayerDieSound;
+	private AudioClip _PlayerDamageSound;
+
 	public float maxHp => _MaxHp;
 	public float hp => _Hp;
 
@@ -35,6 +38,15 @@ public sealed class PlayerableCharacter : PlayerableCharacterBase,
 		_EnemyMissileHitPrefab = ResourceManager.Instance.LoadResource<GameObject>(
 			"EnemyMissileHit",
 			"Prefabs/ParticleInstances/EnemyMissileHit").GetComponent<ParticleInstance>();
+
+		_PlayerDieSound = ResourceManager.Instance.LoadResource<AudioClip>(
+			"Player_Missile_Hit",
+			"Sound/Player_Missile_Hit");
+
+		_PlayerDamageSound = ResourceManager.Instance.LoadResource<AudioClip>(
+			"GetDamaged",
+			"Sound/GetDamaged");
+
 
 		idCollider = GetComponent<CharacterController>();
 		tag = "Player";
@@ -73,6 +85,7 @@ public sealed class PlayerableCharacter : PlayerableCharacterBase,
 				// 사망
 				OnCharacterDie();
 			}
+			else AudioManager.Instance.PlayAudio(_PlayerDamageSound, false, 0.3f);
 		};
 	}
 
@@ -102,6 +115,8 @@ public sealed class PlayerableCharacter : PlayerableCharacterBase,
 
 		characterDieParticle.transform.position = transform.position;
 		characterDieParticle.PlayParticle();
+
+		AudioManager.Instance.PlayAudio(_PlayerDieSound, false, 0.3f);
 
 		PlayerManager.Instance.playerController.ClearPlayerableCharacter();
 		Destroy(gameObject);

@@ -20,6 +20,8 @@ public sealed class PlayerCharacterAttack : MonoBehaviour
 	[SerializeField] private float _Damage = 30.0f;
 
 
+	// 미사일 발사 효과음
+	private AudioClip _MissileFireAudioClip;
 
 	// 마지막 발사 시간을 나타냅니다.
 	private float _LastFiredTime;
@@ -43,15 +45,20 @@ public sealed class PlayerCharacterAttack : MonoBehaviour
 		_PlayerMissilePrefab = ResourceManager.Instance.LoadResource<GameObject>(
 			"PlayerMissile",
 			"Prefabs/Missile/PlayerMissile").GetComponent<PlayerMissile>();
+
+		// 미사일 발사 시 재생될 소리 로드
+		_MissileFireAudioClip = ResourceManager.Instance.LoadResource<AudioClip>(
+			"Player_Missile_Fire",
+			"Sound/Player_Missile_Fire");
 	}
 
 	private void Update()
 	{
 		FireMissile();
-		RechasrgeStamina();
+		RechargeStamina();
 	}
 
-	private void RechasrgeStamina()
+	private void RechargeStamina()
 	{
 		// 스테미너에 채워질 값
 		float chargeValue = _Damage * Time.deltaTime;
@@ -99,6 +106,10 @@ public sealed class PlayerCharacterAttack : MonoBehaviour
 
 		// 스테미너 감소
 		_PlayerableCharacter.attackStemina -= _Damage;
+
+		// 미사일 효과음 재생
+		AudioManager.Instance.PlayAudio(
+			_MissileFireAudioClip, false, 0.3f, 1.0f, AudioType.Effect);
 
 
 		// 미사일 개수만큼 발사시킵니다.
