@@ -64,11 +64,15 @@ public sealed class GameSceneInstance :
 				// 적을 생성합니다.
 				SpawnEnemy(waveInfo, spawnedEnemies);
 
+				var gameScreenInst = (PlayerManager.Instance.playerController.screenInstance as GameScreenInsatnce);
+				gameScreenInst.gameInfoPanel.SetWaveText(currentWave + 1);
+
 				// 웨이브가 끝날 때까지 대기합니다.
 				yield return waitWaveFin;
 
 				// 웨이브 카운트 증가
 				++currentWave;
+
 			}
 		}
 

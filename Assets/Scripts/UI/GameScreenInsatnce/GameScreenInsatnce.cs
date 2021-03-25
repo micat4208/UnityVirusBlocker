@@ -12,7 +12,19 @@ public sealed class GameScreenInsatnce :
     [Header("공격을 담당하는 조이스틱")]
     [SerializeField] private VirtualJoystick _AttackJoystick;
 
+    [Header("GameInfoPanel")]
+    [SerializeField] private GameInfoPanel _GameInfoPanel;
+    public GameInfoPanel gameInfoPanel => _GameInfoPanel;
 
-	public VirtualJoystick movementJoystick => _MovementJoystick;
+    [Header("GameOverPanel")]
+    [SerializeField] private GameObject _GameOverPanel;
+
+
+    public VirtualJoystick movementJoystick => _MovementJoystick;
     public VirtualJoystick attackJoystick => _AttackJoystick;
+
+    public void ShowGameOverPanel()
+	{
+        _GameOverPanel.SetActive(true);
+    }
 }
