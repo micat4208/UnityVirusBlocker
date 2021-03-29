@@ -43,5 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: -1783453183, guid: 62c59d9ff63975d49bc17399a7a012f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ScreenInstancePrefab: {fileID: 0}
-  _EventSystem: {fileID: 0}
+  _ScreenInstancePrefab: {fileID: 5566357111508186055, guid: fd58a41abaad028498f4fa5104c1f6a5,
+    type: 3}
+  _EventSystem: {fileID: 7025184726592769461, guid: 89218cabb6ab48a479557733f5530d16,
+    type: 3}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStartupFramework;
 
 // 게임 화면 객체를 나타낼 때 사용될 컴폰넌트
 public sealed class GameScreenInsatnce : 
@@ -25,6 +26,14 @@ public sealed class GameScreenInsatnce :
 
     public void ShowGameOverPanel()
 	{
-        _GameOverPanel.SetActive(true);
+        IEnumerator Wait3SecAndGoToTitle()
+		{
+            
+            _GameOverPanel.SetActive(true);
+            yield return new WaitForSeconds(3.0f);
+            SceneManager.Instance.LoadScene("TitleScene");
+
+        }
+        StartCoroutine(Wait3SecAndGoToTitle());
     }
 }
